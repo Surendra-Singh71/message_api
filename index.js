@@ -3,18 +3,15 @@ const mysql = require("mysql2");
 const app = express();
 const port = 3000;
 
-// Middleware to parse JSON data
 app.use(express.json());
 
-// Create a connection to the database
 const db = mysql.createConnection({
   host: "localhost",
-  user: "root", // Replace with your MySQL username
-  password: "root", // Replace with your MySQL password
+  user: "root",
+  password: "root",
   database: "my_database",
 });
 
-// Connect to the database
 db.connect((err) => {
   if (err) {
     console.error("Error connecting to the database:", err);
@@ -23,7 +20,6 @@ db.connect((err) => {
   console.log("Connected to the database");
 });
 
-// POST API to insert data into the database
 app.post("/api/messages", (req, res) => {
   const { name, email, phone, msg } = req.body;
 
@@ -47,7 +43,6 @@ app.post("/api/messages", (req, res) => {
   });
 });
 
-// Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
